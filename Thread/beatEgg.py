@@ -3,9 +3,12 @@ from Thread.helper import Helper
 
 
 class BeatEgg(Helper):
-    def __init__(self, recipe: Recipe):
+    name: str
+
+    def __init__(self, recipe: Recipe, name):
         super().__init__()
+        self.name = name
         self.recipe_helper = recipe
 
     def run(self):
-        self.recipe_helper.bake()
+        self.recipe_helper.bake(self.name)
