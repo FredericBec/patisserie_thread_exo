@@ -1,10 +1,11 @@
 from abc import ABC
 from dataclasses import dataclass
 
+
 @dataclass
 class Ingredient(ABC):
     name: str
-    quantity: float
+    quantity: int
     unite: str
 
     def __str__(self) -> str:
