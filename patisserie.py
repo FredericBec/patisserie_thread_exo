@@ -1,6 +1,15 @@
+import concurrent.futures
 import threading
 import time
 import math
+
+from Models.chocolate import Chocolate
+from Models.egg import Egg
+from Models.recipe import Recipe
+from Services.appliance import Appliance
+from Thread.beatEgg import BeatEgg
+from Thread.meltingChocolate import MeltingChocolate
+from Thread.spout import Spout
 
 
 class BatteurOeufs(threading.Thread):
@@ -36,11 +45,28 @@ class FondeurChocolat(threading.Thread):
             time.sleep(1)  # temps supposé d'un tour de spatule
 
 
-if __name__ == "__main__":
-    batteur = BatteurOeufs(6)
-    fondeur = FondeurChocolat(200)
-    batteur.start()
-    fondeur.start()
-    batteur.join()
-    fondeur.join()
+def bake_cake():
+    chocolate = Chocolate("Chocolat noir", 200, "grammes")
+    egg = Egg("Oeufs", 6, "unité")
+    kettle = Appliance()
+    egg_beater = Appliance()
+    recipe_chocolate = Recipe(kettle, chocolate)
+    recipe_egg = Recipe(egg_beater, egg)
+    chocolate_helper = MeltingChocolate(recipe_chocolate)
+    bake_helper = BeatEgg(recipe_egg)
+    first_spout_helper = Spout(recipe_chocolate)
+    second_spout_helper = Spout(recipe_chocolate)
+    bake_helper.start()
+    chocolate_helper.start()
+    bake_helper.join()
+    chocolate_helper.join()
     print("\nJe peux à présent incorporer le chocolat aux oeufs")
+    with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        for _ in range(recipe_chocolate.ingredient.quantity):
+            executor.submit(first_spout_helper.run)
+            executor.submit(second_spout_helper.run)
+
+
+if __name__ == "__main__":
+    bake_cake()
+
