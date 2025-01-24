@@ -13,6 +13,9 @@ from Thread.spout import Spout
 
 
 class BatteurOeufs(threading.Thread):
+    """
+    Ancient method
+    """
     def __init__(self, nb_oeufs):
         threading.Thread.__init__(self)
         self.nb_oeufs = nb_oeufs
@@ -26,6 +29,9 @@ class BatteurOeufs(threading.Thread):
 
 
 class FondeurChocolat(threading.Thread):
+    """
+    Ancient method
+    """
     def __init__(self, quantite):
         threading.Thread.__init__(self)
         self.quantite = quantite  # en grammes
@@ -46,6 +52,9 @@ class FondeurChocolat(threading.Thread):
 
 
 def bake_cake():
+    """
+    Main program
+    """
     chocolate = Chocolate("Chocolat noir", 200, "grammes")
     egg = Egg("Oeufs", 6, "unité")
     kettle = Appliance()

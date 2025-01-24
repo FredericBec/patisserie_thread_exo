@@ -5,6 +5,7 @@ from Models.ingredient import Ingredient
 
 @dataclass
 class Chocolate(Ingredient):
+    """Class extend ingredient"""
 
     def __str__(self):
         ingredient_str = super().__str__()

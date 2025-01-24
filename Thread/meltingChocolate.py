@@ -5,6 +5,7 @@ from Thread.helper import Helper
 
 
 class MeltingChocolate(Helper):
+    """Class for simulating a helper who melt chocolate"""
     name: str
 
     def __init__(self, recipe: Recipe, name):
@@ -13,6 +14,7 @@ class MeltingChocolate(Helper):
         self.recipe_helper = recipe
 
     def run(self):
+        """Simulate melting chocolate in a recipe"""
         print(f"{self.name}: Je mets de l'eau à chauffer dans une bouilloire")
         time.sleep(8)
         print(f"{self.name}: Je verse l'eau dans une casserole")

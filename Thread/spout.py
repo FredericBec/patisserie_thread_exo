@@ -6,6 +6,7 @@ from Thread.helper import Helper
 
 
 class Spout(Helper):
+    """Class for simulate a helper who pour melt chocolate in mix egg recipe"""
     name: str
 
     def __init__(self, recipe: Recipe, name):
@@ -20,6 +21,6 @@ class Spout(Helper):
         print(f"{self.name}: Je verse du {self.recipe_helper.ingredient}")
         local_copy = self.value
         local_copy += 1
-        time.sleep(1.5)
+        time.sleep(0.1)
         self.value = local_copy
         print(f"{self.value} {self.recipe_helper.ingredient.unite}")
