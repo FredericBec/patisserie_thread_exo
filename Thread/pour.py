@@ -5,7 +5,7 @@ from Models.recipe import Recipe
 from Thread.helper import Helper
 
 
-class Spout(Helper):
+class Pour(Helper):
     """Class for simulate a helper who pour melt chocolate in mix egg recipe"""
     name: str
 

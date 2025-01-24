@@ -9,7 +9,7 @@ from Models.recipe import Recipe
 from Services.appliance import Appliance
 from Thread.beatEgg import BeatEgg
 from Thread.meltingChocolate import MeltingChocolate
-from Thread.spout import Spout
+from Thread.pour import Pour
 
 
 class BatteurOeufs(threading.Thread):
@@ -63,8 +63,8 @@ def bake_cake():
     recipe_egg = Recipe(egg_beater, egg)
     chocolate_helper = MeltingChocolate(recipe_chocolate, "Fondeur de chocolat")
     bake_helper = BeatEgg(recipe_egg, "Batteur d'oeufs")
-    first_spout_helper = Spout(recipe_chocolate, "Verseur 1")
-    second_spout_helper = Spout(recipe_chocolate, "Verseur 2")
+    first_spout_helper = Pour(recipe_chocolate, "Verseur 1")
+    second_spout_helper = Pour(recipe_chocolate, "Verseur 2")
     bake_helper.start()
     chocolate_helper.start()
     bake_helper.join()
