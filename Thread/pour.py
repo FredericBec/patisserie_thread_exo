@@ -17,10 +17,10 @@ class Pour(Helper):
         self.lock = threading.Lock()
 
     def run(self):
-        # with self.lock:
-        print(f"{self.name}: Je verse du {self.recipe_helper.ingredient}")
-        local_copy = self.value
-        local_copy += 1
-        time.sleep(0.1)
-        self.value = local_copy
-        print(f"{self.value} {self.recipe_helper.ingredient.unite}")
+        with self.lock:
+            print(f"{self.name}: Je verse du {self.recipe_helper.ingredient}")
+            local_copy = self.value
+            local_copy += 1
+            time.sleep(0.5)
+            self.value = local_copy
+            print(f"{self.value} {self.recipe_helper.ingredient.unite}")
